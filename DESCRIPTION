@@ -1,0 +1,21 @@
+Type: Package
+Package: blogdowntools
+Title: Utilities for blogdown
+Version: 0.0.1
+Author: Davide Messina
+Maintainer: Davide Messina <davide.messina@ars.toscana.it>
+Description: Modify blogdown configuration files for publishing on github.
+  Quite narrow usecase.
+License: MIT + file LICENSE
+Imports: 
+    blogdown,
+    gh,
+    gert,
+    jsonlite,
+    rmarkdown,
+    shiny,
+    xfun,
+    yaml
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.2
