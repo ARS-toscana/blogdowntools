@@ -4,7 +4,7 @@
 \alias{activate_pages}
 \title{Title}
 \usage{
-activate_pages(account_name, repo_name, branch)
+activate_pages(account_name, repo_name, branch = gert::git_branch())
 }
 \arguments{
 \item{account_name}{Name of the account}

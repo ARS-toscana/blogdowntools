@@ -4,7 +4,7 @@
 #' @export github_Rprofile
 
 github_Rprofile <- function() {
-  base_path <- file.path("~/Git repositories/Work/ECVM_documentation", ".Rprofile")
+  base_path <- file.path(getwd(), ".Rprofile")
 
   if (!file.exists(base_path)) {
     stop("The file '", base_path, "' does not exist")

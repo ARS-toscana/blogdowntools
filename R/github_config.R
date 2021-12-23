@@ -1,9 +1,9 @@
 #' Title
 #'
 #' @return modify HUGO/theme config file
-#' @export github_config
+#' @export use_github_blogdown
 
-github_config <- function() {
+use_github_blogdown <- function() {
 
   shiny::shinyApp(
     # Define UI for application that draws a histogram
@@ -48,28 +48,28 @@ github_config <- function() {
       } else {
         stop("Config file not found")
       }
-      rmarkdown::yaml_front_matter
-      shiny::observe(account_name <<- input$account_name)
-      shiny::observe(repo_name <<- input$repo_name)
 
-      param[["baseURL"]] <- shiny::reactive(paste0("https://", input$account_name, ".github.io/", input$repo_name, "/"))
       param[["relativeurls"]] <- T
       param[["canonifyURLs"]] <- F
-      param[["title"]] <- shiny::reactive(input$flag_site_name)
-      param[c("markup", "goldmark", "renderer", "unsafe")] <- T
+
+      param[["markup"]][["goldmark"]][["renderer"]][["unsafe"]] <- T
 
       shiny::observeEvent(input$do, {
+        param[["baseURL"]] <- shiny::isolate(paste0("https://", input$account_name, ".github.io/", input$repo_name, "/"))
+        if (input$flag_site_name) {
+          param[["title"]] <- shiny::isolate(input$site_name)
+        }
         if (flag_toml) {
-          # blogdown::write_toml(param, output = path_toml)
+          blogdown::write_toml(param, output = path_toml)
           shiny::stopApp()
         }
         if (flag_yaml) {
-          # yaml::write_yaml(param, path_yaml)
-          shiny::stopApp(c(input$account_name, input$repo_name))
+          yaml::write_yaml(param, path_yaml)
+          shiny::stopApp()
         }
-        session$onSessionEnded(function() test <- isolate(c("a", input$account_name, input$repo_name)))
+        session$onSessionEnded(function() github_Rprofile_and_activate_pages(shiny::isolate(input$account_name),
+                                                                             shiny::isolate(input$repo_name)))
       })
     }
   )
-  return(test)
 }

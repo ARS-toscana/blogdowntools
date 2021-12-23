@@ -2,4 +2,5 @@
 
 export(activate_pages)
 export(github_Rprofile)
-export(github_config)
+export(github_Rprofile_and_activate_pages)
+export(use_github_blogdown)

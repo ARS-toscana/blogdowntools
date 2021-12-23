@@ -1,5 +1,5 @@
-`%:::%` = function(pkg, fun) get(fun, envir = asNamespace(pkg),
-                                 inherits = FALSE)
+# `%:::%` = function(pkg, fun) get(fun, envir = asNamespace(pkg),
+#                                  inherits = FALSE)
 # 'stats' %:::% 'Pillai'
 
 read_utf8 <- function(file) {
