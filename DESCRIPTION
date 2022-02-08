@@ -15,7 +15,8 @@ Imports:
     rmarkdown,
     shiny,
     xfun,
-    yaml
+    yaml,
+    stringr
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.2

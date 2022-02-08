@@ -1,0 +1,97 @@
+baseURL: https://aaa.github.io/bbb/
+relativeurls: yes
+canonifyURLs: no
+languageCode: en-US
+defaultContentLanguage: en
+title: ccc
+disableToc: no
+theme: hugo-theme-learn
+metaDataFormat: yaml
+defaultContentLanguageInSubdir: yes
+ignoreFiles:
+- \.Rmd$
+- \.Rmarkdown$
+- _cache$
+- \.knit\.md$
+- \.utf8\.md$
+params:
+  author: ARS Tuscany
+  customMermaidURL: https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js
+  description: ECVM documentation
+  disableBreadcrumb: no
+  disableLandingPageButton: no
+  disableMermaid: yes
+  disableNextPrev: no
+  showVisitedLinks: no
+  disableLanguageSwitchingButton: yes
+  titleSeparator: '::'
+  themeVariant: green
+outputs:
+  home:
+  - HTML
+  - RSS
+  - JSON
+Languages:
+  en:
+    landingPageName: <i class='fas fa-home'></i> Home
+    landingPageURL: /en
+    languageName: English
+    menu:
+      shortcuts:
+      - name: <i class="fas fa-project-diagram"></i> Diagram
+        url: https://davidemessinaars.github.io/test_website/data/ECVM.html
+        weight: 10
+      - identifier: github
+        name: <i class='fab fa-fw fa-github'></i> GitHub repo
+        url: https://github.com/ARS-toscana/ECVM
+        weight: 11
+    title: ECVM documentation
+    weight: 1
+  fr:
+    landingPageName: <i class='fas fa-home'></i> Accueil
+    landingPageURL: /fr
+    languageName: Français
+    menu:
+      shortcuts:
+      - identifier: ds
+        name: <i class='fab fa-fw fa-github'></i> Repo GitHub
+        url: https://github.com/ARS-toscana/ECVM
+        weight: 10
+      - name: <i class='fas fa-fw fa-camera'></i> Vitrine
+        url: /showcase
+        weight: 11
+      - identifier: hugodoc
+        name: <i class='fas fa-fw fa-bookmark'></i> Documentation Hugo
+        url: https://gohugo.io/
+        weight: 20
+      - name: <i class='fas fa-fw fa-bullhorn'></i> Crédits
+        url: /credits
+        weight: 30
+    title: Documentation du thème Hugo Learn
+    weight: 2
+  zh:
+    landingPageName: <i class='fas fa-home'></i> <U+5BB6>
+    landingPageURL: /zh
+    languageName: <U+7B80><U+4F53><U+4E2D><U+6587>
+    menu:
+      shortcuts:
+      - identifier: ds
+        name: <i class='fab fa-fw fa-github'></i> GitHub <U+4ED3><U+5E93>
+        url: https://github.com/ARS-toscana/ECVM
+        weight: 10
+      - name: <i class='fas fa-fw fa-camera'></i> <U+5C55><U+793A><U+533A>
+        url: /showcase
+        weight: 11
+      - identifier: hugodoc
+        name: <i class='fas fa-fw fa-bookmark'></i> Hugo <U+6587><U+6863>
+        url: https://gohugo.io/
+        weight: 20
+      - name: <i class='fas fa-fw fa-bullhorn'></i> <U+9E23><U+8C22>
+        url: /credits
+        weight: 30
+    title: Hugo <U+4E3B><U+9898><U+7684> Learn <U+6587><U+6863>
+    weight: 3
+markup:
+  goldmark:
+    renderer:
+      unsafe: yes

@@ -1,12 +1,15 @@
-#' Title
+#' set_github_pages: activate Github Pages functionality from R
 #'
-#' @param account_name Name of the account
-#' @param repo_name Name of the repo
+#' Activate the option 'Pages' of Github.
+#' Account, repository and branch are necessary.
+#' The published folder will be named 'docs'.
+#'
+#' @param account Name of the account
+#' @param repository Name of the repo
 #' @param branch Name of the branch
-#' @return activate GitHub pages with correct parameters
-#' @export activate_pages
+#' @export set_github_pages
 
-activate_pages <- function(account_name, repo_name, branch = gert::git_branch()) {
+set_github_pages <- function(account, repository, branch = gert::git_branch()) {
 
   headers <- c(Accept = "application/vnd.github.v3+json")
 
@@ -21,7 +24,7 @@ activate_pages <- function(account_name, repo_name, branch = gert::git_branch())
 
     if (flag_branch | flag_path) {
       gh::gh("PUT /repos/{owner}/{repo}/pages",
-             owner = account_name, repo = repo_name,
+             owner = account, repo = repository,
              source = list(
                branch = jsonlite::unbox(branch),
                path = jsonlite::unbox("/docs")
@@ -39,7 +42,7 @@ activate_pages <- function(account_name, repo_name, branch = gert::git_branch())
 
   tryCatch(exist_check_modify_option(),
            error = function(c) gh::gh("POST /repos/{owner}/{repo}/pages",
-                                      owner = account_name, repo = repo_name,
+                                      owner = account, repo = repository,
                                       source = list(
                                         branch = jsonlite::unbox(branch),
                                         path = jsonlite::unbox("/docs")

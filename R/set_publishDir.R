@@ -1,14 +1,12 @@
-#' Title
+#' set_publishDir: set the blogdown publishing directory to 'docs'
 #'
-#' @return modify R config file
-#' @export github_Rprofile
+#' Set the parameter publishDir in the project .Rprofile to 'docs'.
+#' If the parameter doesn't already exist it will be create otherwise the old one will be overwritten
+#'
+#' @export set_publishDir
 
-github_Rprofile <- function() {
-  base_path <- file.path(getwd(), ".Rprofile")
-
-  if (!file.exists(base_path)) {
-    stop("The file '", base_path, "' does not exist")
-  }
+set_publishDir <- function() {
+  base_path <- Rprofile_path()
 
   ver = 'blogdown.publishDir = "docs"'
   if (!any(grepl('blogdown\\.publishDir', x1 <- xfun::file_string(base_path)))) {
@@ -20,5 +18,3 @@ github_Rprofile <- function() {
 
   message("Changed publishing directory to 'docs'")
 }
-
-

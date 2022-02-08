@@ -1,23 +1,24 @@
-#' Title
+#' github_host_blogdown
 #'
-#' @return modify HUGO/theme config file
-#' @export use_github_blogdown
+#' Set blogdown parameters useful for hosting a webiste on GitHub Pages,
+#'
+#' @export github_host_blogdown
 
-use_github_blogdown <- function() {
+github_host_blogdown <- function() {
 
   shiny::shinyApp(
     # Define UI for application that draws a histogram
     ui <- shiny::fluidPage(
 
       # Application title
-      shiny::titlePanel("Github repo parameters"),
+      shiny::titlePanel("Github repository parameters"),
 
       # Sidebar with a slider input for number of bins
       shiny::sidebarLayout(
         shiny::sidebarPanel(
-          shiny::textInput("account_name", label = "Account name"),
+          shiny::textInput("account_name", label = "Account name (user or organization)"),
           shiny::textInput("repo_name", label = "Repository name"),
-          shiny::checkboxInput("flag_site_name", "Do you want to change name of the website?"),
+          shiny::checkboxInput("flag_site_name", "Do you want to set a name for your website?"),
           shiny::conditionalPanel(condition = "input.flag_site_name == true",
                                   shiny::textInput("site_name", label = "Website name")),
           shiny::actionButton("do", "Save config file")
@@ -33,18 +34,19 @@ use_github_blogdown <- function() {
     # Define server logic required to draw a histogram
     server <- function(input, output, session) {
 
-      wd <- getwd()
       flag_toml <- F
       flag_yaml <- F
-      base_path <- file.path(wd, "config")
+
+      base_path <- file.path(getwd(), "config")
       path_toml <- paste0(base_path, ".toml")
       path_yaml <- paste0(base_path, ".yaml")
+
       if (file.exists(path_toml)) {
         param <- blogdown::read_toml(path_toml)
-        flag_toml = T
+        flag_toml <- T
       } else if (file.exists(path_yaml)) {
         param <- yaml::yaml.load(read_utf8(path_yaml), eval.expr = TRUE)
-        flag_yaml = T
+        flag_yaml <- T
       } else {
         stop("Config file not found")
       }
@@ -67,8 +69,8 @@ use_github_blogdown <- function() {
           yaml::write_yaml(param, path_yaml)
           shiny::stopApp()
         }
-        session$onSessionEnded(function() github_Rprofile_and_activate_pages(shiny::isolate(input$account_name),
-                                                                             shiny::isolate(input$repo_name)))
+        session$onSessionEnded(function() gh_pages_and_Rprofile(shiny::isolate(input$account_name),
+                                                                shiny::isolate(input$repo_name)))
       })
     }
   )
