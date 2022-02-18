@@ -8,5 +8,5 @@ set_publishDir()
 }
 \description{
 Set the parameter publishDir in the project .Rprofile to 'docs'.
-If the parameter doesn't already exist it will be create otherwise the old one will be overwritten
+If the parameter doesn't already exist it will be create otherwise the old one will be ostringwritten
 }

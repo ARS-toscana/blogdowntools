@@ -23,3 +23,32 @@ Rprofile_path <- function(file) {
   return(filepath)
 
 }
+
+exist_check_modify_option <- function(account, repository, branch = gert::git_branch(), headers) {
+
+  res <- gh::gh("GET /repos/{owner}/{repo}/pages",
+                owner = account, repo = repository,
+                .send_headers = headers)
+
+  flag_branch <- ifelse(res$source$branch != branch, 1, 0)
+  flag_path <- ifelse(res$source$path != "/docs", 1, 0)
+
+  if (flag_branch | flag_path) {
+    gh::gh("PUT /repos/{owner}/{repo}/pages",
+           owner = account, repo = repository,
+           source = list(
+             branch = jsonlite::unbox(branch),
+             path = jsonlite::unbox("/docs")
+           ),
+           .send_headers = headers)
+  }
+
+  if (flag_branch) {
+    sprintf("Modified Pages branch from %s to %s", res[["source"]][["branch"]], branch)
+  }
+
+  if (flag_path) {
+    sprintf("Modified Pages folder from %s to %s", sub('.', '', res[["source"]][["path"]]), "docs")
+  }
+
+}

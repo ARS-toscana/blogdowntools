@@ -8,10 +8,9 @@
 install_hugo_Rprofile_version <- function() {
 
   base_path <- Rprofile_path()
+  path <- xfun::file_string(base_path)
 
-  x1 <- xfun::file_string(base_path)
-
-  hugo_Rprofile_version <- stringr::str_extract(x1, '(blogdown\\.hugo\\.version)+[\\s\\S]*?(?=\\))')
+  hugo_Rprofile_version <- stringr::str_extract(path, '(blogdown\\.hugo\\.version)+[\\s\\S]*?(?=\\))')
   hugo_Rprofile_version <- stringr::str_match(hugo_Rprofile_version, '\\"([^\\"]+)\\"')[2]
 
   hugo_installed_vesions <- stringr::str_match(blogdown::find_hugo("all"), 'Hugo/([^\\"]+)/hugo')[,2]
@@ -22,4 +21,5 @@ install_hugo_Rprofile_version <- function() {
     blogdown::install_hugo(hugo_Rprofile_version)
     message(paste("Version", hugo_Rprofile_version, "has been installed"))
   }
+
 }

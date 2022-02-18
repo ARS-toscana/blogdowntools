@@ -14,7 +14,7 @@ set_github_pages(account, repository, branch = gert::git_branch())
 \item{branch}{Name of the branch}
 }
 \description{
-Activate the option 'Pages' of Github.
+Activate the option 'Pages' on Github.
 Account, repository and branch are necessary.
-The published folder will be named 'docs'.
+The published folder will be set to 'docs'.
 }
