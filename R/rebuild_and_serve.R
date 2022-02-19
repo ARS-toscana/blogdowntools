@@ -7,7 +7,8 @@
 #' @export rebuild_and_serve
 
 rebuild_and_serve <- function(...) {
-  blogdown::stop_site()
+  blogdown::stop_server()
   blogdown::build_site(build_rmd = T, ...)
   blogdown::serve_site()
 }
+

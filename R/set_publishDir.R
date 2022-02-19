@@ -9,7 +9,7 @@ set_publishDir <- function() {
 
   base_path <- Rprofile_path()
   string = 'blogdown.publishDir = "docs"'
-  path <- paste(base_path, collapse = "\n")
+  path <- file_string(base_path)
 
   if (!any(grepl('blogdown\\.publishDir', path))) {
     cat(paste0('\noptions(', string, ')\n'), file = base_path, append = TRUE)
