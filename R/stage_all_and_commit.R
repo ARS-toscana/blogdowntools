@@ -8,8 +8,7 @@
 
 stage_all_and_commit <- function(repo = getwd()) {
 
-  gert::git_add(".")
-  KeyboardSimulator::keybd.press("Ctrl+Alt+m")
+  if (nrow(gert::git_add(".")) > 0) KeyboardSimulator::keybd.press("Ctrl+Alt+m")
 
 }
 
