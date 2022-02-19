@@ -8,7 +8,7 @@
 
 stage_all_and_commit <- function(repo = getwd()) {
 
-  if (nrow(gert::git_add(".")) > 0) KeyboardSimulator::keybd.press("Ctrl+Alt+m")
+  if (nrow(gert::git_add(".")) > 0 & Sys.info()["sysname"] == "Windows") KeyboardSimulator::keybd.press("Ctrl+Alt+m")
 
 }
 
